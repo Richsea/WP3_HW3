@@ -1,7 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.io.*"%>
 
-<html><head><title>회원가입</title></head>
+<html>
+<head>
+	<title>회원가입</title>
+	<meta charset="UTF-8">
+</head>
 
 <body>
 	<form action="Login.jsp" method="post">

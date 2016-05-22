@@ -2,7 +2,11 @@
 <%@page import="java.io.*"%>
 <% String result=request.getParameter("RESULT");%>
 
-<html><head><title>TP3_201402377_예부해</head>
+<html>
+<head>
+	<title>TP3_201402377_예부해</title>
+	<meta charset="UTF-8">
+</head>
 <body>
 	<form action="userInfo.jsp" method="post">
 		<label>I D:	</label><input type="text" name="id"><br>
