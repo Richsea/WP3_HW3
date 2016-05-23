@@ -9,18 +9,20 @@
 
 <body>
 	<form action="Login.jsp" method="post">
-		<label>I D:	</label><input type="text" name="memberId" required><br>
-		<label>P W:	</label><input type="password" name="memberPw" required><br>
-		<input type="submit" value="가입">
+		<label>I D:	</label><input type="text" name="memberId"><br>
+		<label>P W:	</label><input type="password" name="memberPw"><br>
+		<input type="submit" value="가입" onclick="location.href='http://52.79.133.205:8080/WP3_HW3/Login.jsp';">
 	</form>
 	
 	<%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("memeberID");
 	String password = request.getParameter("memeberPw");
+	int point = 50000;
 	
 	boolean bExist = false;
 	String filePath = application.getRealPath("HW_INF");
+	String filePath_purchase = application.getRealPath("HW_INF");
 	File directory = new File(filePath);
 	
 	File[] files = directory.listFiles();
@@ -37,6 +39,7 @@
 	}
 	
 	filePath = application.getRealPath("HW_INF/" + id + ".txt");
+	filePath_purchase = application.getRealPath("HW_INF/" + id + "_purchase.txt");
 	
 	String result = null;
 	if(bExist){
@@ -45,13 +48,12 @@
 		try(PrintWriter writer = new PrintWriter(filePath, "UTF-8")){
 			writer.println(id);
 			writer.println(password);
+			writer.println(point);
 			result = "TRUE";
 		}catch(Exception e){
 			result = "FAIL";
 		}
 	}
-	
-	response.sendRedirect("/Login.jsp");
 	%>
 </body>
 </html>
