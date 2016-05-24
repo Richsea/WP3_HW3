@@ -26,32 +26,45 @@
 	File directory = new File(filePath);
 	
 	File[] files = directory.listFiles();
+	PrintWriter p = response.getWriter();
 	
-	if(files != null){
-		for(File file : files)
-		{
-			if(file.getName().equals(id + ".txt"))
+	if(id == null){
+		p.println("<script type=\"text/javascript\">");
+		p.println("alert('id를 입력하세요')");
+		p.println("location='Membership.jsp';");
+		p.println("</script>");
+	}else if(password == null){
+		p.println("<script type=\"text/javascript\">");
+		p.println("alert('pw를 입력하세요')");
+		p.println("location='Membership.jsp';");
+		p.println("</script>");
+	}else{
+		if(files != null){
+			for(File file : files)
 			{
-				bExist = true;
-				break;
+				if(file.getName().equals(id + ".txt"))
+				{
+					bExist = true;
+					break;
+				}
 			}
 		}
-	}
-	
-	filePath = application.getRealPath("HW_INF/" + id + ".txt");
-	filePath_purchase = application.getRealPath("HW_INF/" + id + "_purchase.txt");
-	
-	String result = null;
-	if(bExist){
-		result = "FAIL";
-	}else{
-		try(PrintWriter writer = new PrintWriter(filePath, "UTF-8")){
-			writer.println(id);
-			writer.println(password);
-			writer.println(point);
-			result = "TRUE";
-		}catch(Exception e){
+		
+		filePath = application.getRealPath("HW_INF/" + id + ".txt");
+		filePath_purchase = application.getRealPath("HW_INF/" + id + "_purchase.txt");
+		
+		String result = null;
+		if(bExist){
 			result = "FAIL";
+		}else{
+			try(PrintWriter writer = new PrintWriter(filePath, "UTF-8")){
+				writer.println(id);
+				writer.println(password);
+				writer.println(point);
+				result = "TRUE";
+			}catch(Exception e){
+				result = "FAIL";
+			}
 		}
 	}
 	%>
