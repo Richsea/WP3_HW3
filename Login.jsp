@@ -4,14 +4,17 @@
 
 <html>
 <head>
-	<title>TP3_201402377_예부해</title>
+	<title>WP3_201402377_예부해</title>
 	<meta charset="UTF-8">
 </head>
 <body>
 	<form action="userInfo.jsp" method="post">
 		<label>I D:	</label><input type="text" name="id"><br>
 		<label>P W:	</label><input type="password" name="pw"><br>
-		<label><input type="submit" name="loginButton" value="로그인"><input type="button" name="loginButton" value="회원가입" onclick="location.href='http://52.79.133.205:8080/WP3_HW3/Membership.jsp';">
+		<label><input type="submit" name="loginButton" value="로그인">
+	</form>
+	<form action="Membership.jsp" method="post">
+		<input type="submit" name="JoinMembershipButton" value="회원가입">
 	</form>
 	
 	<%
@@ -19,10 +22,12 @@
 		PrintWriter p = response.getWriter();
 		if(result != null){
 			p.println("<script type=\"text/javascript\">");
-			if(result.equals("TRUE"))
+			if(result.equals("SUCCESSJOIN"))
 				p.println("alert('회원가입 성공')");
-			else
+			else if(result.equals("FAILJOIN"))
 				p.println("alert('존재하는 id')");
+			else
+				p.println("alert('id와 pw가 일치하지 않습니다')");
 			p.println("location='Login.jsp';");
 			p.println("</script>");
 		}

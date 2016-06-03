@@ -9,8 +9,8 @@
 
 <body>
 	<form action="JoinMembership.jsp" method="post">
-		<label>I D:	</label><input type="text" name="memberId" required="true"><br>
-		<label>P W:	</label><input type="password" name="memberPw" required="true"><br>
+		<label>I D:	</label><input type="text" name="memberID" required="true"><br>
+		<label>P W:	</label><input type="password" name="memberPW" required="true"><br>
 		<input type="submit" value="가입">
 	</form>
 </body>

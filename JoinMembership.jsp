@@ -1,10 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.io.*"%>
+<%@page import="java.util.*"%>
 
 <%
 request.setCharacterEncoding("UTF-8");
-String id = request.getParameter("memeberID");
-String password = request.getParameter("memeberPw");
+String id = request.getParameter("memberID");
+String password = request.getParameter("memberPW");
 int point = 50000;
 	
 boolean bExist = false;
@@ -30,15 +31,16 @@ filePath_purchase = application.getRealPath("HW_INF/" + id + "_purchase.txt");
 	
 String result = null;
 if(bExist){
-	result = "FAIL";
+	result = "FAILJOIN";
 }else{
 	try(PrintWriter writer = new PrintWriter(filePath, "UTF-8")){
+		PrintWriter purchaseWriter = new PrintWriter(filePath_purchase, "UTF-8");
 		writer.println(id);
 		writer.println(password);
 		writer.println(point);
-		result = "TRUE";
+		result = "SUCCESSJOIN";
 	}catch(Exception e){
-		result = "FAIL";
+		result = "FAILJOIN";
 	}
 }
 response.sendRedirect("Login.jsp?RESULT="+result);
