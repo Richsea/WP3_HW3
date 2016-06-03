@@ -1,5 +1,6 @@
 <%@page contentType="text/html; chaset=UTF-8"%>
-<$@page import="java.io.*"%>
+<%@page import="java.io.*"%>
+<% String getUserInfo=request.getParameter("USERINFO");%>
 
 <html>
 <head>
@@ -7,16 +8,19 @@
 	<link href="stylesheet.css" rel="./stylesheet/index.css" type="text/css"></link>
 </head>
 <body>
+	<section>
 	
+	
+	</section>
 	
 	<%
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter p = response.getWriter();
-		if(result != null){
+		if(getUserInfo != null){
 			p.println("<script type=\"text/javascript\">");
-			if(result.equals("SUCCESSJOIN"))
+			if(getUserInfo.equals("SUCCESSJOIN"))
 				p.println("alert('market.jsp')");
-			else if(result.equals("FAILJOIN"))
+			else if(getUserInfo.equals("FAILJOIN"))
 				p.println("alert('market.jsp')");
 			else
 				p.println("alert('market.jsp')");

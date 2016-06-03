@@ -10,6 +10,9 @@
 		request.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		String checkId = null;
+		String checkPw = null;
+		String filePath = application.getRealPath("HW_INF");
 		boolean bExist = false;
 		File directory = new File(filePath);
 		
@@ -18,9 +21,9 @@
 		if(files != null){
 			for(File file : files)
 			{
-				if(file.getName().equals(name+".txt"))
+				if(file.getName().equals(id+".txt"))
 				{
-					bExist true;
+					bExist = true;
 					break;
 				}
 			}
@@ -32,8 +35,8 @@
 		if(bExist){
 			filePath = application.getRealPath("HW_INF/" + id + ".txt");
 			try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
-				String checkId = reader.readLine();
-				String checkPw = reader.readLine();		
+				checkId = reader.readLine();
+				checkPw = reader.readLine();		
 			}catch(Exception e){
 				result = "FAIL";
 				response.sendRedirect("Login.jsp?RESULT="+result);
@@ -44,8 +47,7 @@
 		}
 		
 		if(checkId.equals(id)&&checkPw.equals(pw)){
-			result = id;
-			resposne.sendRedirect("market.jsp?RESULT="+id);
+			response.sendRedirect("market.jsp?USERINFO="+checkId);
 		}else{
 			result = "FAIL";
 			response.sendRedirect("Login.jsp?RESULT="+result);
